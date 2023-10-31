@@ -10,7 +10,6 @@ namespace xml
 {
     public class Person
     {
-
             public string Name { get; set; } = "Undefined";
             public DateTime DateofBirthder { get; set; } = DateTime.UtcNow;
             public string Gender { get; set; } = "Мужской";
@@ -168,13 +167,23 @@ namespace xml
                             }
 
                         }
+
+                    if (p2 == null)
+                    {
+
+                    }
+                    else
+                    {
                         person = person.Concat(p2).ToArray();
 
-                        XmlSerializer xmlSerializer = new XmlSerializer(typeof(Person[]));
+                    }
+
+                      XmlSerializer xmlSerializer = new XmlSerializer(typeof(Person[]));
                         if (File.Exists(NameFile + ".xml"))
                         {
                             NameFile = NameFile + rand.Next(101) as String;
                         }
+
                         using (FileStream fs1 = new FileStream(NameFile + ".xml", FileMode.OpenOrCreate))
                         {
                             //File.Replace("person.xml", NameFile + ".xml", NameFile + ".xml");
@@ -182,8 +191,7 @@ namespace xml
 
                             Console.WriteLine();
                             Console.WriteLine("Файл из xml сохраняет ");
-                            //if (person != null)
-                            //{
+
                             foreach (Person tr in person)
                             {
                                 Console.WriteLine($"Name: {tr.Name}");
@@ -191,21 +199,16 @@ namespace xml
                                 Console.WriteLine($"Gender: {tr.Gender}");
 
                             }
-                            //}
-
-
 
                         }
-
-
-
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         Console.WriteLine("Ошибка !");
                     }
                     finally
                     {
+
                     }
 
                     Console.Clear();
